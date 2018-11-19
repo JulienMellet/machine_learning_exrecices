@@ -44,6 +44,13 @@ def line_regression(main_mat, p):
     res = matmul(tmp_res, vec)
     return res
 
+def f_x(y_x,x):
+    res = 0
+    for i in range(len(y_x)+1):
+        res += y_x.item(i)*pow(x,i)
+    return res
+
+
 ###############################################################################
 # main
 ###############################################################################
@@ -60,28 +67,30 @@ for i in range(10):
 # Linear regression
 m = list()
 for i in range(10):
-    m.append([x_sinoise[i],y_sinoise[i]])
+    m.append([x_sinoise[i], y_sinoise[i]])
 
 y_1 = line_regression(m,1)
 y_2 = line_regression(m,2)
 y_3 = line_regression(m,3)
 y_4 = line_regression(m,4)
-print(y_2)
+y_9 = line_regression(m,9)
 
 # Draw M = 1
 x = np.linspace(0, 2*np.pi, 100)
-plt.plot(x,  y_1.item(0) + y_1.item(1)*x, 'r', label='M = 1')
+plt.plot(x, f_x(y_1,x), 'r', label='M = 1')
 
 # Draw M = 2
-plt.plot(x,  y_2.item(0) + y_2.item(1)*x + y_2.item(2)*x*x, label='M = 2')
+plt.plot(x,  y_2.item(0) + y_2.item(1)*x + y_2.item(2)*pow(x,2), label='M = 2')
 
 # Draw M = 3
-plt.plot(x,  y_3.item(0) + y_3.item(1)*x + y_3.item(2)*x*x +  y_3.item(3)*x*x*x, label='M = 3')
-
+plt.plot(x,  y_3.item(0) + y_3.item(1)*x + y_3.item(2)*x*x +  y_3.item(3)*pow(x,3), label='M = 3')
+"""
 # Draw M = 4
 plt.plot(x,  y_4.item(0) + y_4.item(1)*x + y_4.item(2)*x*x +  y_4.item(3)*x*x*x +  y_4.item(4)*x*x*x*x, label='M = 4')
 
-
+# Draw M = 9
+plt.plot(x,  y_9.item(0) + y_9.item(1)*x + y_9.item(2)*x*x +  y_9.item(3)*x*x*x +  y_9.item(4)*x*x*x*x +  y_9.item(5)*x*x*x*x*x + y_9.item(6)*x*x*x*x*x*x + y_9.item(7)*x*x*x*x*x*x*x + y_9.item(8)*x*x*x*x*x*x*x*x + y_9.item(9)*x*x*x*x*x*x*x*x*x, label='M = 9')
+"""
 # Draw a sinus
 x = np.linspace(0, 2*np.pi, 100)
 plt.plot(x, np.sin(x), '--g', label='sin')
@@ -93,7 +102,7 @@ plt.plot(x, y_sinoise, 'o')
 plt.xlabel('x')
 plt.ylabel('y')
 
-plt.title("Regression")
+plt.title("Linear regression")
 
 plt.legend()
 
