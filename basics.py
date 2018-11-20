@@ -79,44 +79,65 @@ y_9 = line_regression(m,9)
 
 # Draw M = 1
 x = np.linspace(0, 2*np.pi, 100)
-plt.subplot(211)
+plt.subplot(221)
 plt.plot(x, y_1.item(0) + y_1.item(1)*x, 'r', label='M = 1')
 
 # Draw M = 2
-plt.subplot(211)
+plt.subplot(221)
 plt.plot(x,  y_2.item(0) + y_2.item(1)*x + y_2.item(2)*x**2, label='M = 2')
 
 # Draw M = 3
-plt.subplot(211)
+plt.subplot(221)
 plt.plot(x,  y_3.item(0) + y_3.item(1)*x + y_3.item(2)*x**2 +  y_3.item(3)*x**3, label='M = 3')
 """
 # Draw M = 4
-plt.subplot(211)
+plt.subplot(221)
 plt.plot(x,  y_4.item(0) + y_4.item(1)*x + y_4.item(2)*x*x +  y_4.item(3)*x**3 +  y_4.item(4)*x**4, label='M = 4')
 
 # Draw M = 9
-plt.subplot(211)
+plt.subplot(221)
 plt.plot(x,  y_9.item(0) + y_9.item(1)*x + y_9.item(2)*x**2 +  y_9.item(3)*x**3 +  y_9.item(4)*x**4 +  y_9.item(5)*x**5 + y_9.item(6)*x**6 + y_9.item(7)*x**7 + y_9.item(8)*x**8 + y_9.item(9)*x**9, label='M = 9')
 """
 # Draw a sinus
 x = np.linspace(0, 2*np.pi, 100)
-plt.subplot(211)
+plt.subplot(221)
 plt.plot(x, np.sin(x), '--g', label='sin')
 
 # Draw points of y_sinoise
 x = np.linspace(0, 2*np.pi, 10)
-plt.subplot(211)
+plt.subplot(221)
 plt.plot(x, y_sinoise, 'o')
-
-# Error graph
-x = np.linspace(0, 2*np.pi, 100)
-plt.subplot(212)
-plt.plot(x, abs(np.sin(x) - (y_3.item(0) + y_3.item(1)*x + y_3.item(2)*x**2 +  y_3.item(3)*x**3)), label='Error M = 3')
 
 plt.xlabel('x')
 plt.ylabel('y')
 
 plt.title("Linear regression")
+
+# Error graph
+x = np.linspace(0, 2*np.pi, 100)
+plt.subplot(223)
+plt.plot(x, abs(np.sin(x) - (y_3.item(0) + y_3.item(1)*x + y_3.item(2)*x**2 +  y_3.item(3)*x**3)), label='Error M = 3')
+
+plt.xlabel('x')
+plt.ylabel('y')
+
+plt.title("error function")
+
+
+# Draw M = 9
+plt.subplot(222)
+plt.plot(x,  y_9.item(0) + y_9.item(1)*x + y_9.item(2)*x**2 +  y_9.item(3)*x**3 +  y_9.item(4)*x**4 +  y_9.item(5)*x**5 + y_9.item(6)*x**6 + y_9.item(7)*x**7 + y_9.item(8)*x**8 + y_9.item(9)*x**9, label='M = 9')
+
+# Draw a sinus
+x = np.linspace(0, 2*np.pi, 100)
+plt.subplot(222)
+plt.plot(x, np.sin(x), '--g', label='sin')
+
+plt.xlabel('x')
+plt.ylabel('y')
+
+plt.title("Regularization")
+
 
 plt.legend()
 
