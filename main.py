@@ -98,7 +98,7 @@ x = np.linspace(0, 2*np.pi, 100)
 plt.plot(x,  poly_fun(line_regression(m,9),x), label='M = 9')
 
 # Draw Regularized
-y_9_r = regularization(m, -1)
+y_9_r = regularization(m, -100)
 #("reg vect = ", y_9_r)
 
 plt.plot(x,  poly_fun(y_9_r,x), label='Regularized')
